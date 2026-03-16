@@ -1,8 +1,13 @@
-// Typing effect
+// Elements
+const startBtn = document.getElementById('start-btn');
+const intro = document.getElementById('intro');
+const messagesDiv = document.getElementById('messages');
+const roastBtn = document.getElementById('roast-btn');
+
 const messages = [
   "Hey Awais...",
   "22? ...",
-  "you officially belong to uncs!",
+  "You officially belong to uncs!",
   "Happy Birthday!",
   "Banana consumption: critical",
   "Love life: not found"
@@ -13,65 +18,60 @@ let j = 0;
 let currentMessage = '';
 let isDeleting = false;
 const speed = 100;
-const textElement = document.createElement('h2');
-document.body.appendChild(textElement);
 
-function type() {
+// Typing function with color variation
+function typeMessage() {
   if (i < messages.length) {
     currentMessage = messages[i];
+    const colors = ["#f5f5dc", "#a0e600", "#ffff66", "#ffd700", "#ffffff"];
     if (!isDeleting) {
-      textElement.textContent = currentMessage.substring(0, j+1);
+      messagesDiv.textContent = currentMessage.substring(0, j+1);
+      messagesDiv.style.color = colors[Math.floor(Math.random()*colors.length)];
       j++;
       if (j === currentMessage.length) {
         isDeleting = true;
-        setTimeout(type, 1000);
+        setTimeout(typeMessage, 1000);
         return;
       }
     } else {
       j--;
-      textElement.textContent = currentMessage.substring(0, j);
+      messagesDiv.textContent = currentMessage.substring(0, j);
       if (j === 0) {
         isDeleting = false;
         i++;
       }
     }
-    setTimeout(type, speed);
+    setTimeout(typeMessage, speed);
+  } else {
+    roastBtn.style.display = 'inline-block';
   }
 }
-type();
 
-// Banana rain
-function createBanana() {
-  const banana = document.createElement('img');
-  banana.src = 'https://i.imgur.com/G24LIGOg.jpg';
-  banana.className = 'banana';
-  banana.style.left = Math.random() * window.innerWidth + 'px';
-  banana.style.animationDuration = 3 + Math.random() * 2 + 's';
-  document.body.appendChild(banana);
-  setTimeout(() => banana.remove(), 5000);
-}
-setInterval(createBanana, 500);
+// Start button click
+startBtn.addEventListener('click', () => {
+  intro.style.display = 'none';
+  messagesDiv.style.display = 'block';
+  typeMessage();
+
+  // Start confetti
+  setInterval(createConfetti, 100);
+});
 
 // Confetti
 function createConfetti() {
   const confetti = document.createElement('div');
   confetti.className = 'confetti';
   confetti.style.left = Math.random() * window.innerWidth + 'px';
-  confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+  const confettiColors = ["#ffcc00", "#ff66ff", "#66ffff", "#66ff66", "#ff6666"];
+  confetti.style.backgroundColor = confettiColors[Math.floor(Math.random()*confettiColors.length)];
   confetti.style.animationDuration = 2 + Math.random()*3 + 's';
   document.body.appendChild(confetti);
   setTimeout(() => confetti.remove(), 5000);
 }
-setInterval(createConfetti, 100);
 
 // Roast button
-const button = document.createElement('button');
-button.textContent = "Press if you are Awais";
-button.style.marginTop = '20px';
-button.style.fontSize = '20px';
-button.style.padding = '10px 20px';
-document.body.appendChild(button);
-
-button.addEventListener('click', () => {
+roastBtn.addEventListener('click', () => {
   alert("Awais detected: Yapping level 100. Banana consumption critical. Love life: not found.");
 });
+  
+
