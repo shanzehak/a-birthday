@@ -1,50 +1,56 @@
+/* Base body */
 body {
   margin: 0;
-  background-color: #2e4d1c; /* swamp green */
-  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2e4d1c, #4f7c3f); /* swamp gradient */
+  font-family: 'Arial', sans-serif;
   overflow-x: hidden;
   text-align: center;
-  color: #a0e600;
+  color: #f5f5dc; /* light cream for text */
 }
 
-#main-container {
+/* Intro container */
+#intro {
   margin-top: 50px;
 }
 
+/* Shrek image */
 #shrek {
   width: 300px;
   border-radius: 20px;
-  animation: shake 0.5s infinite; /* optional shake */
+  box-shadow: 0 0 30px #a0e600; /* glow effect */
 }
 
-/* Shake animation */
-@keyframes shake {
-  0% { transform: translate(1px,1px); }
-  25% { transform: translate(-2px,1px); }
-  50% { transform: translate(2px,-1px); }
-  75% { transform: translate(-1px,-2px); }
-  100% { transform: translate(1px,2px); }
+/* Button style */
+button {
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: #a0e600;
+  color: #2e4d1c;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* Banana rain */
-.banana {
-  position: absolute;
-  width: 50px;
-  animation: fall linear;
-  transform-origin: center;
+/* Messages text */
+#messages {
+  font-size: 24px;
+  margin-top: 30px;
+  color: #f5f5dc;
 }
 
-@keyframes fall {
-  0% { top: -60px; transform: rotate(0deg); }
-  100% { top: 100vh; transform: rotate(360deg); }
-}
-
-/* Confetti */
+/* Confetti (festive colors) */
 .confetti {
   position: fixed;
   width: 10px;
   height: 10px;
-  background-color: #ffcc00;
   top: -10px;
   z-index: 9999;
   opacity: 0.8;
