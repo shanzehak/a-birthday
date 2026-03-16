@@ -13,31 +13,39 @@ const scene = document.getElementById('scene');
 
 let i = 0;
 
-// Show messages one by one like a video
+// Disable button at start
+roastBtn.disabled = true;
+
 function showNextMessage() {
   if (i >= messages.length) {
-    // Show roast button at the end
+    // Enable button at the end
+    roastBtn.disabled = false;
     roastBtn.style.opacity = 1;
     roastBtn.style.transform = "scale(1)";
     return;
   }
+
+  // Create and show message
   const msg = document.createElement('div');
   msg.textContent = messages[i];
   msg.style.opacity = 0;
   msg.style.transition = "opacity 1s";
   messagesDiv.appendChild(msg);
-  setTimeout(() => msg.style.opacity = 1, 100);
   
+  // Small delay to fade in
+  setTimeout(() => { msg.style.opacity = 1; }, 100);
+
   // Confetti burst
   for(let j=0;j<15;j++){
     createConfetti();
   }
-  
+
   i++;
-  setTimeout(showNextMessage, 2000); // delay between messages
+  // Next message after 2 seconds
+  setTimeout(showNextMessage, 2000);
 }
 
-// Confetti function
+// Confetti
 function createConfetti() {
   const confetti = document.createElement('div');
   confetti.className = 'confetti';
@@ -49,19 +57,15 @@ function createConfetti() {
   setTimeout(() => confetti.remove(), 4000);
 }
 
-// Start the “video” after Shrek enters
+// Start sequence after page loads
 window.onload = () => {
-  setTimeout(showNextMessage, 4000); // start after intro animations
+  setTimeout(showNextMessage, 4000); // waits for Shrek entry animation
 }
 
-// Roast button
+// Roast button click
 roastBtn.addEventListener('click', () => {
   alert("Awais detected: Yapping level 100. Banana consumption critical. Love life: not found.");
 });
-
-      
-
-
-
+  
 
 
