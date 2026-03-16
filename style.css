@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  background-color: #2e4d1c; /* swamp green */
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  text-align: center;
+  color: #a0e600;
+}
+
+#main-container {
+  margin-top: 50px;
+}
+
+#shrek {
+  width: 300px;
+  border-radius: 20px;
+  animation: shake 0.5s infinite; /* optional shake */
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translate(1px,1px); }
+  25% { transform: translate(-2px,1px); }
+  50% { transform: translate(2px,-1px); }
+  75% { transform: translate(-1px,-2px); }
+  100% { transform: translate(1px,2px); }
+}
+
+/* Banana rain */
+.banana {
+  position: absolute;
+  width: 50px;
+  animation: fall linear;
+  transform-origin: center;
+}
+
+@keyframes fall {
+  0% { top: -60px; transform: rotate(0deg); }
+  100% { top: 100vh; transform: rotate(360deg); }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #ffcc00;
+  top: -10px;
+  z-index: 9999;
+  opacity: 0.8;
+  border-radius: 50%;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
