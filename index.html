@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Happy Birthday Awais!</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Intro page -->
-  <div id="intro">
-    <h1>Happy Birthday Awais!</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Shrek_%28character%29.png" id="shrek">
-    <button id="start-btn">Click to start</button>
+  <!-- Video-like container -->
+  <div id="scene">
+    <h1 id="title">Happy Birthday Awais!</h1>
+    <img id="shrek" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Shrek_%28character%29.png">
+    <div id="messages"></div>
+    <button id="roast-btn">Press if you are Awais</button>
   </div>
 
-  <!-- Message container -->
-  <div id="messages" style="display:none;"></div>
-
-  <!-- Roast button (hidden initially) -->
-  <button id="roast-btn" style="display:none;">Press if you are Awais</button>
-
   <!-- Background music -->
-  <audio autoplay loop>
+  <audio id="bg-music" autoplay loop>
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
 
