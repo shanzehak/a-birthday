@@ -1,9 +1,3 @@
-// Elements
-const startBtn = document.getElementById('start-btn');
-const intro = document.getElementById('intro');
-const messagesDiv = document.getElementById('messages');
-const roastBtn = document.getElementById('roast-btn');
-
 const messages = [
   "Hey Awais...",
   "22? ...",
@@ -13,65 +7,61 @@ const messages = [
   "Love life: not found"
 ];
 
-let i = 0;
-let j = 0;
-let currentMessage = '';
-let isDeleting = false;
-const speed = 100;
+const messagesDiv = document.getElementById('messages');
+const roastBtn = document.getElementById('roast-btn');
+const scene = document.getElementById('scene');
 
-// Typing function with color variation
-function typeMessage() {
-  if (i < messages.length) {
-    currentMessage = messages[i];
-    const colors = ["#f5f5dc", "#a0e600", "#ffff66", "#ffd700", "#ffffff"];
-    if (!isDeleting) {
-      messagesDiv.textContent = currentMessage.substring(0, j+1);
-      messagesDiv.style.color = colors[Math.floor(Math.random()*colors.length)];
-      j++;
-      if (j === currentMessage.length) {
-        isDeleting = true;
-        setTimeout(typeMessage, 1000);
-        return;
-      }
-    } else {
-      j--;
-      messagesDiv.textContent = currentMessage.substring(0, j);
-      if (j === 0) {
-        isDeleting = false;
-        i++;
-      }
-    }
-    setTimeout(typeMessage, speed);
-  } else {
-    roastBtn.style.display = 'inline-block';
+let i = 0;
+
+// Show messages one by one like a video
+function showNextMessage() {
+  if (i >= messages.length) {
+    // Show roast button at the end
+    roastBtn.style.opacity = 1;
+    roastBtn.style.transform = "scale(1)";
+    return;
   }
+  const msg = document.createElement('div');
+  msg.textContent = messages[i];
+  msg.style.opacity = 0;
+  msg.style.transition = "opacity 1s";
+  messagesDiv.appendChild(msg);
+  setTimeout(() => msg.style.opacity = 1, 100);
+  
+  // Confetti burst
+  for(let j=0;j<15;j++){
+    createConfetti();
+  }
+  
+  i++;
+  setTimeout(showNextMessage, 2000); // delay between messages
 }
 
-// Start button click
-startBtn.addEventListener('click', () => {
-  intro.style.display = 'none';
-  messagesDiv.style.display = 'block';
-  typeMessage();
-
-  // Start confetti
-  setInterval(createConfetti, 100);
-});
-
-// Confetti
+// Confetti function
 function createConfetti() {
   const confetti = document.createElement('div');
   confetti.className = 'confetti';
-  confetti.style.left = Math.random() * window.innerWidth + 'px';
-  const confettiColors = ["#ffcc00", "#ff66ff", "#66ffff", "#66ff66", "#ff6666"];
-  confetti.style.backgroundColor = confettiColors[Math.floor(Math.random()*confettiColors.length)];
-  confetti.style.animationDuration = 2 + Math.random()*3 + 's';
-  document.body.appendChild(confetti);
-  setTimeout(() => confetti.remove(), 5000);
+  confetti.style.left = Math.random()*window.innerWidth+'px';
+  const colors = ["#ffcc00","#ff66ff","#66ffff","#66ff66","#ff6666"];
+  confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+  confetti.style.animationDuration = (2 + Math.random()*2)+'s';
+  scene.appendChild(confetti);
+  setTimeout(() => confetti.remove(), 4000);
+}
+
+// Start the “video” after Shrek enters
+window.onload = () => {
+  setTimeout(showNextMessage, 4000); // start after intro animations
 }
 
 // Roast button
 roastBtn.addEventListener('click', () => {
   alert("Awais detected: Yapping level 100. Banana consumption critical. Love life: not found.");
 });
-  
+
+      
+
+
+
+
 
