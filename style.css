@@ -1,64 +1,26 @@
-/* Base body */
-body {
-  margin: 0;
-  background: linear-gradient(135deg, #2e4d1c, #4f7c3f); /* swamp gradient */
-  font-family: 'Arial', sans-serif;
-  overflow-x: hidden;
-  text-align: center;
-  color: #f5f5dc; /* light cream for text */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Awais!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* Intro container */
-#intro {
-  margin-top: 50px;
-}
+  <!-- Video-like container -->
+  <div id="scene">
+    <h1 id="title">Happy Birthday Awais!</h1>
+    <img id="shrek" src="https://upload.wikimedia.org/wikipedia/en/4/4d/Shrek_%28character%29.png">
+    <div id="messages"></div>
+    <button id="roast-btn">Press if you are Awais</button>
+  </div>
 
-/* Shrek image */
-#shrek {
-  width: 300px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px #a0e600; /* glow effect */
-}
+  <!-- Background music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
-/* Button style */
-button {
-  margin-top: 20px;
-  font-size: 20px;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background: #a0e600;
-  color: #2e4d1c;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-/* Messages text */
-#messages {
-  font-size: 24px;
-  margin-top: 30px;
-  color: #f5f5dc;
-}
-
-/* Confetti (festive colors) */
-.confetti {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  top: -10px;
-  z-index: 9999;
-  opacity: 0.8;
-  border-radius: 50%;
-  animation: confettiFall linear forwards;
-}
-
-@keyframes confettiFall {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(100vh) rotate(360deg); }
-}
+  <script src="script.js"></script>
+</body>
+</html>
+ 
